@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Aditi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #login-screen, #story-container {
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        /* Password Style */
+        input[type="password"] {
+            padding: 12px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            width: 80%;
+            text-align: center;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: 1px solid #ff4d4d;
+        }
+
+        button.btn {
+            padding: 10px 30px;
+            border-radius: 25px;
+            border: none;
+            background: #ff4d4d;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Story Styles */
+        #story-container { display: none; }
+        
+        #letter {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #ffcccc;
+            min-height: 200px;
+        }
+
+        .photo-frame {
+            display: none;
+            animation: zoomIn 1.5s ease;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #ff4d4d;
+        }
+
+        .caption {
+            margin-top: 15px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #ff4d4d;
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Final Buttons */
+        #proposal { display: none; }
+        .btn-group { display: flex; justify-content: space-around; margin-top: 30px; position: relative; }
+        #no-btn { position: absolute; transition: 0.3s; }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="login-screen">
+        <h2 style="color: #ff4d4d; font-family: 'Dancing Script', cursive; font-size: 2.5rem;">For Aditi Only ❤️</h2>
+        <input type="password" id="pass" placeholder="Enter Secret Code...">
+        <br>
+        <button class="btn" onclick="checkPass()">Unlock Love</button>
+    </div>
+
+    <div id="story-container">
+        <div id="letter"></div>
+
+        <div id="slideshow">
+            <div class="photo-frame" id="frame1">
+                <img src="pic1.jpg" alt="Memory 1">
+                <div class="caption">Jab tumse pehle baar mila tha... ✨</div>
+            </div>
+            <div class="photo-frame" id="frame2">
+                <img src="pic2.jpg" alt="Memory 2">
+                <div class="caption">Tumhari ye smile sabse pyaari hai 😍</div>
+            </div>
+            <div class="photo-frame" id="frame3">
+                <img src="pic3.jpg" alt="Memory 3">
+                <div class="caption">Har pal tumhare saath rehna hai... ❤️</div>
+            </div>
+            <div class="photo-frame" id="frame4">
+                <img src="pic4.jpg" alt="Memory 4">
+                <div class="caption">Tum meri duniya ho Aditi 🌍</div>
+            </div>
+            <div class="photo-frame" id="frame5">
+                <img src="together.jpg" alt="Memory 5">
+                <div class="caption">I Love You Baby! 💖</div>
+            </div>
+        </div>
+
+        <div id="proposal">
+            <h1 style="font-family: 'Dancing Script', cursive; color: #ff4d4d; font-size: 3rem;">Do you love me?</h1>
+            <div class="btn-group">
+                <button class="btn" onclick="alert('I Love You Too Jaan! ❤️')">Yes</button>
+                <button class="btn" id="no-btn" onmouseover="moveNo()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkPass() {
+            let input = document.getElementById('pass').value;
+            if(input === "Aditi04") {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('story-container').style.display = 'block';
+                document.getElementById('bgMusic').play();
+                startStory();
+            } else {
+                alert("Galat Password! Sirf Aditi hi khol sakti hai.");
+            }
+        }
+
+        async function startStory() {
+            const letterText = "Dear Aditi,\n\nTum meri zindagi ki wo khushi ho jise main kabhi khona nahi chahta. Har din, har lamha bas tumhara hi khayal rehta hai... Ye chhota sa surprise sirf tumhare liye hai kyuki tum mere liye bahut special ho. ❤️";
+            const letterDiv = document.getElementById('letter');
+            
+            // Typing effect
+            for(let i=0; i<letterText.length; i++) {
+                letterDiv.innerHTML += letterText.charAt(i);
+                await new Promise(r => setTimeout(r, 50));
+            }
+
+            await new Promise(r => setTimeout(r, 2000));
+            letterDiv.style.display = 'none';
+
+            // Slideshow Logic
+            for(let i=1; i<=5; i++) {
+                let frame = document.getElementById('frame' + i);
+                frame.style.display = 'block';
+                await new Promise(r => setTimeout(r, 4000)); // Har photo 4 sec dikhegi
+                if(i < 5) frame.style.display = 'none';
+            }
+
+            // Proposal
+            document.getElementById('slideshow').style.display = 'none';
+            document.getElementById('proposal').style.display = 'block';
+        }
+
+        function moveNo() {
+            const btn = document.getElementById('no-btn');
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+    </script>
+</body>
+</html>
