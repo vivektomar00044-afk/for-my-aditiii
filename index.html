@@ -1,0 +1,233 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For My Aditi ❤️</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:radial-gradient(circle at top,#1a001f,#000);
+font-family:'Poppins',sans-serif;
+color:#fff;
+text-align:center;
+}
+
+/* floating hearts bg */
+.heart-bg{
+position:absolute;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:0;
+}
+.heart-bg span{
+position:absolute;
+color:#ff4d6d;
+animation:floatUp 6s linear infinite;
+opacity:0.6;
+}
+@keyframes floatUp{
+0%{transform:translateY(100vh) scale(0.5);opacity:0}
+20%{opacity:1}
+100%{transform:translateY(-10vh) scale(1.2);opacity:0}
+}
+
+#login,#story{
+width:90%;
+max-width:420px;
+z-index:2;
+}
+
+h2{
+font-family:'Dancing Script';
+font-size:2.6rem;
+color:#ff4d6d;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 5px #ff4d6d}
+to{text-shadow:0 0 20px #ff4d6d}
+}
+
+input{
+padding:12px;
+border-radius:30px;
+border:1px solid #ff4d6d;
+background:rgba(255,255,255,0.08);
+color:#fff;
+width:80%;
+outline:none;
+text-align:center;
+margin-top:15px;
+}
+
+.btn{
+margin-top:15px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:#ff4d6d;
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+.btn:hover{transform:scale(1.1)}
+
+#story{display:none}
+
+#letter{
+font-family:'Dancing Script';
+font-size:1.6rem;
+color:#ffd1dc;
+min-height:120px;
+white-space:pre-line;
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0}
+to{opacity:1}
+}
+
+.frame{
+display:none;
+animation:zoom 1.5s ease;
+}
+
+@keyframes zoom{
+from{transform:scale(0.8);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+.frame img{
+width:100%;
+border-radius:18px;
+border:3px solid #ff4d6d;
+box-shadow:0 0 25px #ff4d6d;
+}
+
+.caption{
+margin-top:10px;
+font-family:'Dancing Script';
+font-size:1.7rem;
+color:#ff4d6d;
+}
+
+#proposal{display:none;margin-top:20px}
+
+.btn-group{position:relative;height:80px;margin-top:20px}
+
+#yes,#no{
+position:absolute;
+}
+
+#yes{left:20%}
+#no{left:55%}
+
+.heart{
+position:absolute;
+color:#ff4d6d;
+animation:rise 4s linear forwards;
+}
+
+@keyframes rise{
+0%{transform:translateY(0);opacity:1}
+100%{transform:translateY(-600px);opacity:0}
+}
+</style></head>
+<body><div class="heart-bg" id="bg"></div><audio id="music" loop>
+<source src="song.mp3" type="audio/mpeg" />
+</audio><div id="login">
+<h2>For Aditi Only ❤️</h2>
+<input type="password" id="pass" placeholder="Enter Secret Code" />
+<br/>
+<button class="btn" onclick="unlock()">Unlock Love</button>
+</div><div id="story">
+<div id="letter"></div><div id="slides">
+<div class="frame" id="f1"><img src="pic1.jpg"><div class="caption">Tumhari muskurahat ✨</div></div>
+<div class="frame" id="f2"><img src="pic2.jpg"><div class="caption">Sirf tum ❤️</div></div>
+<div class="frame" id="f3"><img src="pic3.jpg"><div class="caption">Har pal tumhare saath 😍</div></div>
+<div class="frame" id="f4"><img src="pic4.jpg"><div class="caption">Mera poora jahan 🌎</div></div>
+<div class="frame" id="f5"><img src="together.jpg"><div class="caption">Forever together ❤️</div></div>
+</div><div id="proposal">
+<h1 style="font-family:'Dancing Script';color:#ff4d6d;font-size:2.5rem">Do you love me?</h1>
+<div class="btn-group">
+<button class="btn" id="yes" onclick="yes()">Yes ❤️</button>
+<button class="btn" id="no" onmouseover="run()">No 😏</button>
+</div>
+</div>
+</div><script>
+function unlock(){
+if(document.getElementById('pass').value==='Aditi04'){
+document.getElementById('login').style.display='none';
+document.getElementById('story').style.display='block';
+document.getElementById('music').play().catch(()=>{});
+start();
+}else alert('Wrong Password 💔');
+}
+
+function createHearts(){
+const bg=document.getElementById('bg');
+setInterval(()=>{
+let s=document.createElement('span');
+s.innerHTML='❤️';
+s.style.left=Math.random()*100+'vw';
+s.style.fontSize=Math.random()*20+10+'px';
+s.style.animationDuration=(Math.random()*3+3)+'s';
+bg.appendChild(s);
+setTimeout(()=>s.remove(),6000);
+},400);
+}
+
+async function start(){
+createHearts();
+let text="Hi Aditi ❤️\nTum meri duniya ho... aur hamesha rahogi 💫";
+let el=document.getElementById('letter');
+for(let i=0;i<text.length;i++){
+el.innerHTML+=text[i];
+await new Promise(r=>setTimeout(r,45));
+}
+await new Promise(r=>setTimeout(r,2000));
+el.style.display='none';
+
+for(let i=1;i<=5;i++){
+let f=document.getElementById('f'+i);
+f.style.display='block';
+await new Promise(r=>setTimeout(r,2800));
+if(i<5)f.style.display='none';
+}
+document.getElementById('slides').style.display='none';
+document.getElementById('proposal').style.display='block';
+}
+
+function run(){
+let b=document.getElementById('no');
+b.style.left=Math.random()*70+'%';
+b.style.top=Math.random()*70+'%';
+}
+
+function yes(){
+alert('I love you too Aditi ❤️💍');
+for(let i=0;i<40;i++)heart();
+}
+
+function heart(){
+let h=document.createElement('div');
+h.className='heart';
+h.innerHTML='❤️';
+h.style.left=Math.random()*100+'vw';
+h.style.top='100vh';
+h.style.fontSize=Math.random()*20+15+'px';
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),4000);
+}
+</script></body>
+</html>
